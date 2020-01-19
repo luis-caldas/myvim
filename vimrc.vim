@@ -11,6 +11,12 @@ set t_Co=256
 nnoremap q: <nop>
 nnoremap Q <nop>
 
+" Set tab to size 4 and transform tabs into spaces
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
@@ -26,12 +32,12 @@ set statusline+=%#UserColorDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#UserColorVisual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 " --- Buffer numbering
 set statusline+=%#UserColorWhiteBackground#
-set statusline+=\ %n\  
+set statusline+=\ %n\   
 " --- File information
 set statusline+=%#UserColorGrayBackround#
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
-set statusline+=\ %R%M\
+set statusline+=\ %R%M\  
 " --- Rest of the bar  
 set statusline+=%#UserColorBar#
 set statusline+=\ %F\  
