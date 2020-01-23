@@ -1,0 +1,12 @@
+[submodule "dotvim/pack/plugins/start/fugitive"]
+	path = dotvim/pack/plugins/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
+[submodule "dotvim/pack/plugins/start/surround"]
+	path = dotvim/pack/plugins/start/surround
+	url = https://tpope.io/vim/surround.git
+[submodule "dotvim/pack/plugins/start/nerdtree"]
+	path = dotvim/pack/plugins/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "dotvim/pack/plugins/start/syntastic"]
+	path = dotvim/pack/plugins/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
