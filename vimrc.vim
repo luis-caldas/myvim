@@ -26,3 +26,5 @@ exec 'source' s:path . "/colours.vim"
 " Load the status line file
 exec 'source' s:path . "/statusline.vim"
 
+" Load the config file for plugins
+exec 'source' s:path . "/plugins.vim"

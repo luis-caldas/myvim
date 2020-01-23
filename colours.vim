@@ -39,5 +39,7 @@ highlight LineNr ctermbg=233 ctermfg=white
 
 " Syntax
 highlight Statement ctermfg=yellow
-highlight CursorLineNr cterm=underline ctermfg=yellow
+highlight CursorLineNr cterm=None ctermfg=yellow
 
+" Cursor Line
+highlight CursorLine cterm=None ctermfg=233 ctermbg=250
