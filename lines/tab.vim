@@ -3,14 +3,20 @@
 set showtabline=2
 
 " Create the custom tab line
-function! Tabline()
+function! TabLine(is_unicode)
 
     " Init the tabline string
     let tab_string = ''
     
+    " Check if this program uses unicode arrows
+    if a:is_unicode == 'true'
     " Set unicode arrows to variables
-    let left_arrow = ''
-    let right_arrow = ''
+        let left_arrow = ''
+        let right_arrow = ''
+    else
+        let left_arrow = ''
+        let right_arrow = ''
+    endif
 
     " Acquire the number of tabs
     let nr_tabs = tabpagenr('$')
