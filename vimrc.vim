@@ -25,7 +25,7 @@ let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 " Acquire the needed variables
 let s:set_colours = $FORCE_COLORS
-let g:is_unicode = $APPLICATION_UNICODE
+let g:unicode_check = $APPLICATION_UNICODE
 
 " Check if the colors variable is overidable
 if s:set_colours == ''
@@ -38,11 +38,11 @@ call SetColours(s:set_colours)
 
 " Load the status and tab lines
 exec 'source' s:path . '/lines/status.vim'
-set statusline=%!StatusLine(g:is_unicode)
+set statusline=%!StatusLine(g:unicode_check)
 exec 'source' s:path . '/lines/tab.vim'
-set tabline=%!TabLine(g:is_unicode)
+set tabline=%!TabLine(g:unicode_check)
 
-" Load the config file with the plugins configurations and imports
+" Load the config file with the plugins configuration
 exec 'source' s:path . '/plugins.vim'
-
+call ConfigurePlugins(g:unicode_check)
 

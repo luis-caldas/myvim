@@ -108,6 +108,10 @@ function! SetColours(colour_number)
     highlight EndOfBuffer ctermfg=white
     highlight LineNr ctermbg=233 ctermfg=white
 
+    " Status line continuation
+    highlight StatusLine cterm=None ctermbg=234 ctermfg=white
+    highlight StatusLineNC cterm=None ctermbg=234 ctermfg=None
+
     " Syntax
     highlight Statement ctermfg=yellow
     highlight CursorLineNr cterm=None ctermfg=yellow
