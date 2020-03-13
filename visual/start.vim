@@ -20,8 +20,26 @@ fun! Start()
         \ noswapfile
         \ norelativenumber
 
+    " String that will be shown in the startup
+    let start_string =<< trim END
+    
+
+
+            .'.         .'.
+            |  \       /  |
+            '.  \  |  /  .'
+              '. \\|// .'
+                '-- --'         My simple VIM
+                .'/|\'.
+               '..'|'..'
+
+
+
+
+    END
+
     " Now we can just write to the buffer, whatever you want.
-    call append('$', "test")
+    call append('$', start_string)
 
     " No modifications to this buffer
     setlocal nomodifiable nomodified
