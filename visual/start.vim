@@ -21,25 +21,20 @@ fun! Start()
         \ norelativenumber
 
     " String that will be shown in the startup
-    let start_string =<< trim END
-    
-
-
-            .'.         .'.
-            |  \       /  |
-            '.  \  |  /  .'
-              '. \\|// .'
-                '-- --'         My simple VIM
-                .'/|\'.
-               '..'|'..'
-
-
-
-
-    END
-
-    " Now we can just write to the buffer, whatever you want.
-    call append('$', start_string)
+    call append('$', "")
+    call append('$', "")
+    call append('$', "")
+    call append('$', "            .'.         .'.")
+    call append('$', "            |  \\       /  |")
+    call append('$', "            '.  \\  |  /  .'")
+    call append('$', "              '. \\\\|// .'")
+    call append('$', "                '-- --'         My simple VIM")
+    call append('$', "                .'/|\\'.")
+    call append('$', "               '..'|'..'")
+    call append('$', "")
+    call append('$', "")
+    call append('$', "")
+    call append('$', "")
 
     " No modifications to this buffer
     setlocal nomodifiable nomodified
