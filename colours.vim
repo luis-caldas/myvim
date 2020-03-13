@@ -59,8 +59,8 @@ function! SetColours(colour_number)
         highlight StatusLineNC cterm=None ctermbg=234 ctermfg=None
 
         " Syntax
-        highlight Statement ctermfg=yellow
-        highlight CursorLineNr cterm=None ctermfg=yellow
+        highlight Statement ctermfg=white
+        highlight CursorLineNr cterm=None ctermbg=white ctermfg=233
 
         " Cursor Line
         highlight CursorLine cterm=None ctermfg=250 ctermbg=234
@@ -125,8 +125,8 @@ function! SetColours(colour_number)
         highlight StatusLineNC cterm=None ctermbg=7 ctermfg=None
 
         " Syntax
-        highlight Statement ctermfg=yellow
-        highlight CursorLineNr cterm=None ctermfg=yellow
+        highlight Statement ctermfg=7
+        highlight CursorLineNr cterm=None ctermbg=7 ctermfg=0
 
         " Cursor Line
         highlight CursorLine cterm=None ctermfg=7 ctermbg=0

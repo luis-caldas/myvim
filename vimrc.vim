@@ -46,3 +46,5 @@ set tabline=%!TabLine(g:unicode_check)
 exec 'source' s:path . '/plugins.vim'
 call ConfigurePlugins(g:unicode_check)
 
+" Load the custom startup message
+exec 'source' s:path . '/start.vim'
