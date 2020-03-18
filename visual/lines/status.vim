@@ -60,7 +60,7 @@ function! StatusLine(is_unicode)
     let status_string .= '%#UserColorRightLeftArrow#'
     let status_string .= left_arrow
     let status_string .= '%#UserColorRightLeft#'
-    let status_string .= ' [%{&fileencoding?&fileencoding:&encoding},%Y] '
+    let status_string .= ' [%{&encoding},%{&filencoding},%{&fileformat},%Y] '
 
     " Show the line and col the cursor is in
     let status_string .= '%#UserColorRightMiddleArrow#'
