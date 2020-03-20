@@ -21,6 +21,9 @@ function! ConfigurePlugins(is_unicode)
     " Auto close vim if only the NERDTree remains
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+    " Haskell
+    let g:haskell_indent_disable = 1
+
     " vim-minimap
 
 endfunction
