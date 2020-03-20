@@ -69,7 +69,7 @@ function! SetColours(colour_number)
         highlight VertSplit cterm=None ctermbg=234 ctermfg=234
 
         " Color column limit
-        highlight ColorColumn cterm=None ctermbg=234 ctermfg=234
+        highlight ColorColumn cterm=None ctermbg=234 ctermfg=None
 
     else
 
@@ -138,7 +138,7 @@ function! SetColours(colour_number)
         highlight VertSplit cterm=None ctermbg=7 ctermfg=7
 
         " Color column limit
-        highlight ColorColumn cterm=None ctermbg=7 ctermfg=7
+        highlight ColorColumn cterm=None ctermbg=7 ctermfg=None
     
     endif
 
