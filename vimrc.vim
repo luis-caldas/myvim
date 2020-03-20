@@ -20,6 +20,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Add the color column limit
+set colorcolumn=80
+
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
