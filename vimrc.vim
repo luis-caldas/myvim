@@ -23,6 +23,9 @@ set expandtab
 " Add the color column limit
 set colorcolumn=80
 
+" Change the path of the .viminfo file
+set viminfo+=n~/.cache/.viminfo
+
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
