@@ -17,6 +17,14 @@ function! StatusLine(is_unicode)
         let right_arrow = ''
     endif
 
+    " Add the backtick for powerlines
+    if a:is_unicode == 'true'
+        let status_string .= "%#UserColorNormalArrowBack#%{(mode()=='n')?'" . left_arrow . "':''}"
+        let status_string .= "%#UserColorInsertArrowBack#%{(mode()=='i')?'" . left_arrow . "':''}"
+        let status_string .= "%#UserColorDeleteArrowBack#%{(mode()=='r')?'" . left_arrow . "':''}"
+        let status_string .= "%#UserColorVisualArrowBack#%{(mode()=='v')?'" . left_arrow . "':''}"
+    endif
+
     " Add the mode information
     let status_string .= "%#UserColorNormal#%{(mode()=='n')?'\ \ NORMAL\ ':''}"
     let status_string .= "%#UserColorInsert#%{(mode()=='i')?'\ \ INSERT\ ':''}"
@@ -73,6 +81,10 @@ function! StatusLine(is_unicode)
     let status_string .= left_arrow
     let status_string .= '%#UserColorRightRight#'
     let status_string .= ' %p%% '
+
+    " Add the last arrow
+    let status_string .= '%#UserColorStatusLineLeft#'
+    let status_string .= right_arrow
 
    " Return the full string
    return status_string 

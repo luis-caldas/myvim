@@ -16,6 +16,15 @@ function! SetColours(colour_number)
         highlight UserColorDeleteArrow ctermfg=red ctermbg=245
         highlight UserColorVisualArrow ctermfg=cyan ctermbg=245
 
+        " Left arrows with the normal background
+        highlight UserColorInsertArrowBack ctermfg=blue ctermbg=None
+        highlight UserColorNormalArrowBack ctermfg=green ctermbg=None
+        highlight UserColorDeleteArrowBack ctermfg=red ctermbg=None
+        highlight UserColorVisualArrowBack ctermfg=cyan ctermbg=None
+        
+        " Last status line arrow 
+        highlight UserColorStatusLineLeft cterm=None ctermfg=245 ctermbg=None
+
         " Tab line colours
         highlight UserColorTabLine cterm=None ctermbg=235 ctermfg=240
         highlight UserColorTabLineSel cterm=None ctermbg=245 ctermfg=233
@@ -37,16 +46,16 @@ function! SetColours(colour_number)
         highlight UserColorLeftLeft cterm=bold ctermbg=245 ctermfg=233
         highlight UserColorLeftMiddle cterm=None ctermbg=240 ctermfg=233
         highlight UserColorLeftRight cterm=None ctermbg=235 ctermfg=240
-        highlight UserColorMiddle cterm=None ctermbg=233 ctermfg=240
+        highlight UserColorMiddle cterm=None ctermbg=None ctermfg=240
         highlight UserColorRightLeft cterm=None ctermbg=235 ctermfg=240
         highlight UserColorRightMiddle cterm=None ctermbg=240 ctermfg=233
         highlight UserColorRightRight cterm=None ctermbg=245 ctermfg=233
 
-        " Statis line colours arrow
+        " Status line colours arrow
         highlight UserColorLeftLeftArrow ctermbg=240 ctermfg=245
         highlight UserColorLeftMiddleArrow ctermbg=235 ctermfg=240
-        highlight UserColorLeftRightArrow ctermbg=233 ctermfg=235
-        highlight UserColorRightLeftArrow ctermbg=233 ctermfg=235
+        highlight UserColorLeftRightArrow ctermbg=None ctermfg=235
+        highlight UserColorRightLeftArrow ctermbg=None ctermfg=235
         highlight UserColorRightMiddleArrow ctermbg=235 ctermfg=240
         highlight UserColorRightRightArrow ctermbg=240 ctermfg=245
 
@@ -63,7 +72,7 @@ function! SetColours(colour_number)
         highlight CursorLineNr cterm=None ctermbg=white ctermfg=233
 
         " Cursor Line
-        highlight CursorLine cterm=None ctermfg=250 ctermbg=234
+        highlight CursorLine cterm=None ctermfg=250 ctermbg=None
 
         " Buffer divider
         highlight VertSplit cterm=None ctermbg=234 ctermfg=234
