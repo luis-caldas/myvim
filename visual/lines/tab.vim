@@ -1,97 +1,109 @@
 " Always show the tabline
-
 set showtabline=2
+
+" Function that generates a variable replacement string
+function! Rs(prefix, name)
+    return "%#" . a:prefix . a:name . "#"
+endfunction
 
 " Create the custom tab line
 function! TabLine(is_unicode)
 
+    " Colour variable name prefix
+    let s:v_p = "UserColourTab"
+
     " Init the tabline string
-    let tab_string = ''
+    let s:t_s = ""
     
-    " Check if this program uses unicode arrows
-    if a:is_unicode == 'true'
     " Set unicode arrows to variables
-        let left_arrow = ''
-        let right_arrow = ''
-    else
-        let left_arrow = ''
-        let right_arrow = ''
-    endif
+    let s:left_arrow = ""
+    let s:right_arrow = ""
 
     " Acquire the number of tabs
-    let nr_tabs = tabpagenr('$')
+    let s:nr_tabs = tabpagenr("$")
 
     " Iterate the tabs
-    for i in range(nr_tabs)
+    for i in range(s:nr_tabs)
 
         " The tab in the iteration
-        let tab_number = i + 1
+        let s:tab_number = i + 1
 
         " The tab selected
-        let sel_tab = tabpagenr()
+        let s:sel_tab = tabpagenr()
 
-        let winnr = tabpagewinnr(tab_number)
-        
-        let buflist = tabpagebuflist(tab_number)
-        let bufnr = buflist[winnr - 1]
+        " Extract some useful data
+        let s:winnr = tabpagewinnr(s:tab_number)
+        let s:buflist = tabpagebuflist(s:tab_number)
+        let s:bufnr = s:buflist[s:winnr - 1]
+        let s:bufname = bufname(s:bufnr)
+        let s:bufmodified = getbufvar(s:bufnr, "&mod")
 
-        let bufname = bufname(bufnr)
-        let bufmodified = getbufvar(bufnr, "&mod")
+        " Data that will be shown inside a block
+        let s:data_left = " " . s:tab_number . " "
+        let s:data_right =  " " . (s:bufname != "" ? fnamemodify(s:bufname, ":t") : "[No Name]") . " "
 
-        " let tab_string .= '%#UserColorTabLineNumber#' . '%' . tab_number . 'T'
-        " let tab_string .= '%#UserColorTabLineNumberArrow#' . right_arrow
-
-        " Check if we are at the first iteration
-        if i != 0
-
-            " Add the appropriate color
-            if tab_number == sel_tab
-                let tab_string .= '%#UserColorTabLineSelNumberArrowLeft#'
-            else
-
-                " Check if last tab was the selected one
-                if tab_number - 1 == sel_tab
-                    let tab_string .= '%#UserColorTabLineNumberArrowLeftSel#'
+        " Add the leftmost arrow in a block
+        if a:is_unicode
+            " Check if we are at the first iteration
+            if i == 0
+                if s:tab_number == s:sel_tab
+                    let s:t_s .= Rs(s:v_p, "FirstSelArrow")
                 else
-                    let tab_string .= '%#UserColorTabLineNumberArrowLeft#'
+                    let s:t_s .= Rs(s:v_p, "FirstArrow")
                 endif
-            endif
-
-            let tab_string .= right_arrow
-
-        endif
-
-        let tab_string .= (tab_number == sel_tab ? '%#UserColorTabLineSelNumber#' : '%#UserColorTabLineNumber#')
-        let tab_string .= ' ' . tab_number . ' '
-        let tab_string .= (tab_number == sel_tab ? '%#UserColorTabLineSelNumberArrow#' : '%#UserColorTabLineNumberArrow#')
-        let tab_string .= right_arrow
-        let tab_string .= (tab_number == sel_tab ? '%#UserColorTabLineSel#' : '%#UserColorTabLine#')
-        let tab_string .= ' ' . (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]') . ' '
-
-        if bufmodified
-            let tab_string .= '+ '
-        endif
-
-        " Check if we reached the end of the bar
-        if tab_number == nr_tabs
-
-            " Select the arrow color depending if we are selected
-            if tab_number == sel_tab
-                let tab_string .= '%#UserColorTabLineEndSel#'
+                let s:t_s .= s:left_arrow
             else
-                let tab_string .= '%#UserColorTabLineEnd#'
+                " Add the appropriate color
+                if s:tab_number == s:sel_tab
+                    let s:t_s .= Rs(s:v_p, "FirstInvertedSelArrow")
+                else
+                    " Check if last tab was the selected one
+                    if s:tab_number - 1 == s:sel_tab
+                        let s:t_s .= Rs(s:v_p, "FirstBeforeSelArrow")
+                    else
+                        let s:t_s .= Rs(s:v_p, "FirstInvertedArrow")
+                    endif
+                endif
+                let s:t_s .= s:right_arrow
             endif
+        endif
 
-            " Add the arrow
-            let tab_string .= right_arrow
+        " The inside part of the block
+        let s:t_s .= (s:tab_number == s:sel_tab ? Rs(s:v_p, "NumberSel") : Rs(s:v_p, "Number"))
+        let s:t_s .= s:data_left 
+        if a:is_unicode
+            let s:t_s .= (s:tab_number == s:sel_tab ? Rs(s:v_p, "MiddleSelArrow") : Rs(s:v_p, "MiddleArrow"))
+            let s:t_s .= s:right_arrow
+        endif
+        let s:t_s .= (s:tab_number == s:sel_tab ? Rs(s:v_p, "LineSel") : Rs(s:v_p, "Line"))
+        let s:t_s .= s:data_right
+        
+        " Show on the block if the file has been modified
+        if s:bufmodified
+            let s:t_s .= "+ "
+        endif
 
+        " Add the last arrow on the block
+        if a:is_unicode
+            " Check if we reached the end of the bar
+            if s:tab_number == s:nr_tabs
+                " Select the arrow color depending if we are selected
+                if s:tab_number == s:sel_tab
+                    let s:t_s .= Rs(s:v_p, "EndSelArrow")
+                else
+                    let s:t_s .= Rs(s:v_p, "EndArrow")
+                endif
+                " Add the arrow
+                let s:t_s .= s:right_arrow
+            endif
         endif
 
     endfor
 
-    let tab_string .= '%#UserColorTabLineFill#'
+    " Fill the rest of the bar with the given colour
+    let s:t_s .= Rs(s:v_p, "End")
 
-    return tab_string
+    return s:t_s
 
 endfunction
 

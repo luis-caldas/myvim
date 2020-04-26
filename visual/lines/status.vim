@@ -1,92 +1,109 @@
 " Custom status line
 set laststatus=2
 
+" Function that generates a variable replacement string
+function! Rs(prefix, name)
+    return "%#" . a:prefix . a:name . "#"
+endfunction
+
+" Function that creates a ternary string
+function! Ts(expression, value_if_true)
+    return "%{(" . a:expression. ") ? '" . a:value_if_true . "' : ''}"
+endfunction
+
 " Create the custom status line
 function! StatusLine(is_unicode)
-    
-    " Start the status line empty
-    let status_string = ''
 
-    " Check if this program uses unicode arrows
-    if a:is_unicode == 'true'
+    " Variable generation prefix
+    let s:v_p = "UserColourStatus"
+
+    " What is shown on the blocks in order of appearance
+    let s:block_l_l = " %n " 
+    let s:block_l_m = Ts("&paste", " PASTE") . Ts("&spell", " SPELL") . " [%R%M] "
+    let s:block_l_r = " %F "
+    let s:block_m   = "%="
+    let s:block_r_l = " [%{&encoding},%{&fileencoding},%{&fileformat},%Y] "
+    let s:block_r_m = " %l:%c "
+    let s:block_r_r = " %p%% "
+
+    " Start the status line empty
+    let s:s_s = ''
+
     " Set unicode arrows to variables
-        let left_arrow = ''
-        let right_arrow = ''
-    else
-        let left_arrow = ''
-        let right_arrow = ''
-    endif
+    let s:left_arrow = ''
+    let s:right_arrow = ''
 
     " Add the backtick for powerlines
-    if a:is_unicode == 'true'
-        let status_string .= "%#UserColorNormalArrowBack#%{(mode()=='n')?'" . left_arrow . "':''}"
-        let status_string .= "%#UserColorInsertArrowBack#%{(mode()=='i')?'" . left_arrow . "':''}"
-        let status_string .= "%#UserColorDeleteArrowBack#%{(mode()=='r')?'" . left_arrow . "':''}"
-        let status_string .= "%#UserColorVisualArrowBack#%{(mode()=='v')?'" . left_arrow . "':''}"
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "NormalArrowLeft") . Ts("mode()=='n'", s:left_arrow)
+        let s:s_s .= Rs(s:v_p, "InsertArrowLeft") . Ts("mode()=='i'", s:left_arrow)
+        let s:s_s .= Rs(s:v_p, "DeleteArrowLeft") . Ts("mode()=='r'", s:left_arrow)
+        let s:s_s .= Rs(s:v_p, "VisualArrowLeft") . Ts("mode()=='v'", s:left_arrow)
     endif
 
     " Add the mode information
-    let status_string .= "%#UserColorNormal#%{(mode()=='n')?'\ \ NORMAL\ ':''}"
-    let status_string .= "%#UserColorInsert#%{(mode()=='i')?'\ \ INSERT\ ':''}"
-    let status_string .= "%#UserColorDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}"
-    let status_string .= "%#UserColorVisual#%{(mode()=='v')?'\ \ VISUAL\ ':''}"
+    let s:s_s .= Rs(s:v_p, "Normal") . Ts("mode()=='n'", "  NORMAL ")
+    let s:s_s .= Rs(s:v_p, "Insert") . Ts("mode()=='i'", "  INSERT ")
+    let s:s_s .= Rs(s:v_p, "Delete") . Ts("mode()=='r'", "  DELETE ")
+    let s:s_s .= Rs(s:v_p, "Visual") . Ts("mode()=='v'", "  VISUAL ")
 
     " Add the arrow if supported by unicode
-    if a:is_unicode == 'true'
-        let status_string .= "%#UserColorNormalArrow#%{(mode()=='n')?'" . right_arrow . "':''}"
-        let status_string .= "%#UserColorInsertArrow#%{(mode()=='i')?'" . right_arrow . "':''}"
-        let status_string .= "%#UserColorDeleteArrow#%{(mode()=='r')?'" . right_arrow . "':''}"
-        let status_string .= "%#UserColorVisualArrow#%{(mode()=='v')?'" . right_arrow . "':''}"
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "NormalArrowRight") . Ts("mode()=='n'", s:right_arrow)
+        let s:s_s .= Rs(s:v_p, "InsertArrowRight") . Ts("mode()=='i'", s:right_arrow)
+        let s:s_s .= Rs(s:v_p, "DeleteArrowRight") . Ts("mode()=='r'", s:right_arrow)
+        let s:s_s .= Rs(s:v_p, "VisualArrowRight") . Ts("mode()=='v'", s:right_arrow)
     endif
 
-    " Show the buffer number
-    let status_string .= '%#UserColorLeftLeft#'
-    let status_string .= ' %n ' 
-    let status_string .= '%#UserColorLeftLeftArrow#'
-    let status_string .= right_arrow
-
-    " Add the file information
-    let status_string .= '%#UserColorLeftMiddle#'
-    let status_string .= "%{&paste?'\ PASTE':''}"
-    let status_string .= "%{&spell?'\ SPELL':''}"
-    let status_string .= ' [%R%M] '
-    let status_string .= '%#UserColorLeftMiddleArrow#'
-    let status_string .= right_arrow
-
-    " --- Rest of the bar  
-    let status_string .= '%#UserColorLeftRight#'
-    let status_string .= ' %F '
-    let status_string .= '%#UserColorLeftRightArrow#'
-    let status_string .= right_arrow
+    " Left most part of the Bar
+    let s:s_s .= Rs(s:v_p, "LeftLeft")
+    let s:s_s .= s:block_l_l
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "LeftLeftArrow")
+        let s:s_s .= s:right_arrow
+    endif
+    let s:s_s .= Rs(s:v_p, "LeftMiddle")
+    let s:s_s .= s:block_l_m
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "LeftMiddleArrow")
+        let s:s_s .= s:right_arrow
+    endif
+    let s:s_s .= Rs(s:v_p, "LeftRight")
+    let s:s_s .= s:block_l_r
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "LeftRightArrow")
+        let s:s_s .= s:right_arrow
+    endif
 
     " Middle of the Bar
-    let status_string .= '%#UserColorMiddle#'
-    let status_string .= '%='
-    " ---
+    let s:s_s .= Rs(s:v_p, "Middle")
+    let s:s_s .= s:block_m
 
-    " Show the filetype and encoding
-    let status_string .= '%#UserColorRightLeftArrow#'
-    let status_string .= left_arrow
-    let status_string .= '%#UserColorRightLeft#'
-    let status_string .= ' [%{&encoding},%{&fileencoding},%{&fileformat},%Y] '
-
-    " Show the line and col the cursor is in
-    let status_string .= '%#UserColorRightMiddleArrow#'
-    let status_string .= left_arrow
-    let status_string .= '%#UserColorRightMiddle#'
-    let status_string .= ' %l:%c '
-
-    " Show the percentage of the file in which the cursor is in
-    let status_string .= '%#UserColorRightRightArrow#'
-    let status_string .= left_arrow
-    let status_string .= '%#UserColorRightRight#'
-    let status_string .= ' %p%% '
-
-    " Add the last arrow
-    let status_string .= '%#UserColorStatusLineLeft#'
-    let status_string .= right_arrow
+    " Rightmost part of the bar
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "RightLeftArrow")
+        let s:s_s .= s:left_arrow
+    endif
+    let s:s_s .= Rs(s:v_p, "RightLeft")
+    let s:s_s .= s:block_r_l
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "RightMiddleArrow")
+        let s:s_s .= s:left_arrow
+    endif
+    let s:s_s .= Rs(s:v_p, "RightMiddle")
+    let s:s_s .= s:block_r_m
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "RightRightArrow")
+        let s:s_s .= s:left_arrow
+    endif
+    let s:s_s .= Rs(s:v_p, "RightRight")
+    let s:s_s .= s:block_r_r
+    if a:is_unicode
+        let s:s_s .= Rs(s:v_p, "RightArrow")
+        let s:s_s .= s:right_arrow
+    endif
 
    " Return the full string
-   return status_string 
+   return s:s_s 
 
 endfunction
