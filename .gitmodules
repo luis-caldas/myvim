@@ -1,15 +1,18 @@
 [submodule "dotvim/pack/plugins/start/fugitive"]
 	path = dotvim/pack/plugins/start/fugitive
-	url = https://tpope.io/vim/fugitive.git
+	url = https://github.com/tpope/vim-fugitive
 [submodule "dotvim/pack/plugins/start/surround"]
 	path = dotvim/pack/plugins/start/surround
-	url = https://tpope.io/vim/surround.git
+	url = https://github.com/tpope/vim-surround
 [submodule "dotvim/pack/plugins/start/nerdtree"]
 	path = dotvim/pack/plugins/start/nerdtree
-	url = https://github.com/preservim/nerdtree.git
+	url = https://github.com/preservim/nerdtree
 [submodule "dotvim/pack/plugins/start/syntastic"]
 	path = dotvim/pack/plugins/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
-[submodule "dotvim/pack/plugins/start/vim-minimap"]
-	path = dotvim/pack/plugins/start/vim-minimap
+	url = https://github.com/vim-syntastic/syntastic
+[submodule "dotvim/pack/plugins/start/minimap"]
+	path = dotvim/pack/plugins/start/minimap
 	url = https://github.com/severin-lemaignan/vim-minimap
+[submodule "dotvim/pack/plugins/start/haskell"]
+	path = dotvim/pack/plugins/start/haskell
+	url = https://github.com/neovimhaskell/haskell-vim

@@ -24,10 +24,11 @@ set expandtab
 set colorcolumn=80
 
 " Change the path of the .viminfo file
-set viminfo+=n~/.cache/.viminfo
+set viminfo+='65535,n~/.cache/viminfo
 
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let s:dot_path = s:path . "/dotvim"
 
 " Acquire the needed variables
 let s:set_colours = $FORCE_COLORS
@@ -47,6 +48,11 @@ exec 'source' s:path . '/visual/lines/status.vim'
 set statusline=%!StatusLine(g:unicode_check)
 exec 'source' s:path . '/visual/lines/tab.vim'
 set tabline=%!TabLine(g:unicode_check)
+
+" Add the dotvim local folder
+" set them 'runtimepath' (without ~/.vim folders)
+let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
+let &runtimepath = printf('%s,%s,%s/after', s:dot_path, &runtimepath, s:dot_path)
 
 " Load the config file with the plugins configuration
 exec 'source' s:path . '/plugins.vim'

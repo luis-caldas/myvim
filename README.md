@@ -2,8 +2,6 @@
 
 ### Installation
 
-Link the `dotvim/pack` folder to the inside of your `~/.vim` folder
-
 Source the `vimrc.vim` file to your `.vimrc` script
 
 #### How to source a file in vimscript:
