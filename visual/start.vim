@@ -9,16 +9,15 @@ fun! Start()
     enew
 
     " ... and set some options for it
-    setlocal
-        \ bufhidden=wipe
-        \ buftype=nofile
-        \ nobuflisted
-        \ nocursorcolumn
-        \ nocursorline
-        \ nolist
-        \ nonumber
-        \ noswapfile
-        \ norelativenumber
+    setlocal bufhidden=wipe
+    setlocal buftype=nofile
+    setlocal nobuflisted
+    setlocal nocursorcolumn
+    setlocal nocursorline
+    setlocal nolist
+    setlocal nonumber
+    setlocal noswapfile
+    setlocal norelativenumber
 
     " String that will be shown in the startup
     call append('$', "")
