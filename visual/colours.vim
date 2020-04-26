@@ -174,13 +174,13 @@ function! SetColours(colour_number)
         let s:c_dark_accent    = s:c_black
         let s:r_end_of_buffer  = [ s:c_none, s:c_none       , s:c_white]
         let s:r_line_nr        = [ s:c_none, s:c_dark_accent, s:c_white]
-        let s:r_status_line    = [ s:c_none, s:c_dark_accent, s:c_white]
-        let s:r_status_line_nc = [ s:c_none, s:c_dark_accent, s:c_none ]
+        let s:r_status_line    = [ s:c_none, s:c_white, s:c_dark_accent]
+        let s:r_status_line_nc = [ s:c_none, s:c_white      , s:c_none ]
         let s:r_statement      = [ s:c_none, s:c_none       , s:c_white]
         let s:r_cursor_line_nr = [ s:c_none, s:c_white, s:c_dark_accent]
         let s:r_cursor_line    = [ s:c_none, s:c_white, s:c_dark_accent]
-        let s:r_vert_split     = [ s:c_none, s:c_dark_accent, s:c_dark_accent]
-        let s:r_color_column   = [ s:c_none, s:c_dark_accent, s:c_none]
+        let s:r_vert_split     = [ s:c_none, s:c_white      , s:c_white]
+        let s:r_color_column   = [ s:c_none, s:c_white      , s:c_none ]
     
     endif
 
