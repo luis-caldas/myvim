@@ -27,6 +27,7 @@ function! SetColours(colour_number)
     let s:insert = "green"
     let s:delete = "red"
     let s:visual = "cyan"
+    let s:other  = "yellow"
     let s:htab   = "magenta"
 
     " Colour renaming
@@ -190,15 +191,18 @@ function! SetColours(colour_number)
     call Eh(s:c_p_s, "Insert", s:s_bold_l, s:s_line_l_fg, s:insert)
     call Eh(s:c_p_s, "Visual", s:s_bold_l, s:s_line_l_fg, s:visual)
     call Eh(s:c_p_s, "Delete", s:s_bold_l, s:s_line_l_fg, s:delete)
+    call Eh(s:c_p_s, "Other" , s:s_bold_l, s:s_line_l_fg, s:other)
     " Varibles for the arrows that envelops the item
     call Eh(s:c_p_s, "NormalArrowLeft" , 0, s:normal, s:s_line_l_bg)
     call Eh(s:c_p_s, "InsertArrowLeft" , 0, s:insert, s:s_line_l_bg)
     call Eh(s:c_p_s, "VisualArrowLeft" , 0, s:visual, s:s_line_l_bg)
     call Eh(s:c_p_s, "DeleteArrowLeft" , 0, s:delete, s:s_line_l_bg)
+    call Eh(s:c_p_s, "OtherArrowLeft"  , 0, s:other , s:s_line_l_bg)
     call Eh(s:c_p_s, "NormalArrowRight", 0, s:normal, s:s_line_l_l_bg)
     call Eh(s:c_p_s, "InsertArrowRight", 0, s:insert, s:s_line_l_l_bg)
     call Eh(s:c_p_s, "VisualArrowRight", 0, s:visual, s:s_line_l_l_bg)
     call Eh(s:c_p_s, "DeleteArrowRight", 0, s:delete, s:s_line_l_l_bg)
+    call Eh(s:c_p_s, "OtherArrowRight" , 0, s:other , s:s_line_l_l_bg)
     " Create the colours for the blocks on the status line
     call Eh(s:c_p_s, "LeftLeft"   , s:s_bold_l_l, s:s_line_l_l_fg, s:s_line_l_l_bg)
     call Eh(s:c_p_s, "LeftMiddle" , s:s_bold_l_m, s:s_line_l_m_fg, s:s_line_l_m_bg)
@@ -213,7 +217,8 @@ function! SetColours(colour_number)
     call Eh(s:c_p_s, "RightLeftArrow"  , 0, s:s_line_r_l_bg, s:s_line_m_bg)
     call Eh(s:c_p_s, "RightMiddleArrow", 0, s:s_line_r_m_bg, s:s_line_r_l_bg)
     call Eh(s:c_p_s, "RightRightArrow" , 0, s:s_line_r_r_bg, s:s_line_r_m_bg)
-    " Last Arrow
+    " Extremities Arrows
+    call Eh(s:c_p_s, "LeftArrow" , 0, s:s_line_r_r_bg, s:s_line_r_bg)
     call Eh(s:c_p_s, "RightArrow", 0, s:s_line_r_r_bg, s:s_line_r_bg)
     " Colour for the middle of the bar
     call Eh(s:c_p_s, "Middle", s:s_bold_m, s:s_line_m_fg, s:s_line_m_bg)

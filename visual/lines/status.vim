@@ -27,33 +27,69 @@ function! StatusLine(is_unicode)
     let s:block_r_r = " %p%% "
 
     " Start the status line empty
-    let s:s_s = ''
+    let s:s_s = ""
 
     " Set unicode arrows to variables
-    let s:left_arrow = ''
-    let s:right_arrow = ''
+    let s:left_arrow = ""
+    let s:right_arrow = ""
 
+    " List of modes to show on the line
+    " 0 = mode char
+    " 1 = prefix of the colour variable
+    " 2 = the string that will be shown on the line
+    let s:modes_allowed  = []
+    let s:modes_allowed += [["n", "Normal", "  NORMAL "]]
+    let s:modes_allowed += [["i", "Insert", "  INSERT "]]
+    let s:modes_allowed += [["R", "Delete", "  REPLACE "]]
+    let s:modes_allowed += [["v", "Visual", "  VISUAL "]]
+    let s:modes_allowed += [["V", "Visual", "  LINE "]]
+    " Fallback for other modes
+    let s:fallback_mode = ["Other", "  OTHER "]
+
+    " Create the expression that excludes all the ones before
+    let s:modes_size = len(s:modes_allowed)
+    let s:exclude_expression = ""
+    for s:index_expr in range(s:modes_size)
+        let s:exclude_expression .= "(mode()!='" . s:modes_allowed[s:index_expr][0] . "')"
+        if s:index_expr + 1 < s:modes_size
+            let s:exclude_expression .= "&&"
+        end
+    endfor
+
+    " Iterate the mode list
+    for s:each_mode in s:modes_allowed
+        " Create the expression string 
+        let s:expression_string = "mode()=='" . s:each_mode[0] . "'"
+        " Add the backtick for powerlines
+        if a:is_unicode
+            let s:s_s .= Rs(s:v_p, s:each_mode[1] . "ArrowLeft")
+            let s:s_s .= Ts(s:expression_string, s:left_arrow)
+        endif
+        " Add the mode information
+        let s:s_s .= Rs(s:v_p, s:each_mode[1])
+        let s:s_s .= Ts(s:expression_string, s:each_mode[2])
+        " Add the arrow if supported by unicode
+        if a:is_unicode
+            let s:s_s .= Rs(s:v_p, s:each_mode[1] . "ArrowRight")
+            let s:s_s .= Ts(s:expression_string, s:right_arrow)
+        endif
+    endfor
+
+    " Create the biggest mode exclusion list
     " Add the backtick for powerlines
     if a:is_unicode
-        let s:s_s .= Rs(s:v_p, "NormalArrowLeft") . Ts("mode()=='n'", s:left_arrow)
-        let s:s_s .= Rs(s:v_p, "InsertArrowLeft") . Ts("mode()=='i'", s:left_arrow)
-        let s:s_s .= Rs(s:v_p, "DeleteArrowLeft") . Ts("mode()=='r'", s:left_arrow)
-        let s:s_s .= Rs(s:v_p, "VisualArrowLeft") . Ts("mode()=='v'", s:left_arrow)
+        let s:s_s .= Rs(s:v_p, s:fallback_mode[0]. "ArrowLeft")
+        let s:s_s .= Ts(s:exclude_expression, s:left_arrow)
     endif
-
     " Add the mode information
-    let s:s_s .= Rs(s:v_p, "Normal") . Ts("mode()=='n'", "  NORMAL ")
-    let s:s_s .= Rs(s:v_p, "Insert") . Ts("mode()=='i'", "  INSERT ")
-    let s:s_s .= Rs(s:v_p, "Delete") . Ts("mode()=='r'", "  DELETE ")
-    let s:s_s .= Rs(s:v_p, "Visual") . Ts("mode()=='v'", "  VISUAL ")
-
+    let s:s_s .= Rs(s:v_p, s:fallback_mode[0])
+    let s:s_s .= Ts(s:exclude_expression, s:fallback_mode[1])
     " Add the arrow if supported by unicode
     if a:is_unicode
-        let s:s_s .= Rs(s:v_p, "NormalArrowRight") . Ts("mode()=='n'", s:right_arrow)
-        let s:s_s .= Rs(s:v_p, "InsertArrowRight") . Ts("mode()=='i'", s:right_arrow)
-        let s:s_s .= Rs(s:v_p, "DeleteArrowRight") . Ts("mode()=='r'", s:right_arrow)
-        let s:s_s .= Rs(s:v_p, "VisualArrowRight") . Ts("mode()=='v'", s:right_arrow)
+        let s:s_s .= Rs(s:v_p, s:fallback_mode[0] . "ArrowRight")
+        let s:s_s .= Ts(s:exclude_expression, s:right_arrow)
     endif
+
 
     " Left most part of the Bar
     let s:s_s .= Rs(s:v_p, "LeftLeft")
