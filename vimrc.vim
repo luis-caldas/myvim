@@ -28,7 +28,15 @@ set viminfo+='65535,n~/.cache/viminfo
 
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand("<sfile>:p")), ":h")
-let s:dot_path = s:path . "/dotvim"
+
+" Execute the vim-plug plugin manager
+exec "source" s:path . "/plugins/plug.vim"
+
+" Automatic download plugins
+autocmd VimEnter *
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \|   PlugInstall --sync | q
+    \| endif
 
 " Acquire the needed variables
 let s:set_colours = $FORCE_COLOURS
@@ -55,7 +63,7 @@ set tabline=%!TabLine(g:unicode_check)
 "let &runtimepath = printf("%s,%s,%s/after", s:dot_path, &runtimepath, s:dot_path)
 
 " Load the config file with the plugins configuration
-exec "source" s:path . "/plugins.vim"
+exec "source" s:path . "/plugins/config.vim"
 call ConfigurePlugins(g:unicode_check)
 
 " Load the custom startup message
