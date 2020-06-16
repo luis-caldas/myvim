@@ -3,12 +3,14 @@
 " Set plugin manager folder
 call plug#begin(stdpath('data') . "/mine-plugins")
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'LnL7/vim-nix'
 Plug 'tpope/vim-fugitive'
-Plug 'severin-lemaignan/vim-minimap'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neovimhaskell/haskell-vim'
+"Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
 
