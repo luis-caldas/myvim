@@ -47,7 +47,8 @@ if s:set_colours == ""
     let s:set_colours = &t_Co
 endif
 
-" Load the colours file
+" Load colours
+exec "source" s:path . "/visual/noctu.vim"
 exec "source" s:path . "/visual/colours.vim"
 call SetColours(s:set_colours)
 
