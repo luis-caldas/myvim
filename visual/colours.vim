@@ -21,6 +21,7 @@ function! SetColours(colour_number)
     let s:c_p = "UserColour"
     let s:c_p_s = s:c_p . "Status"
     let s:c_p_t = s:c_p . "Tab"
+    let s:c_p_l = s:c_p . "LChar"
 
     " Setting some helpful colour vars
     let s:normal = "blue"
@@ -41,17 +42,22 @@ function! SetColours(colour_number)
     let s:c_grey_5 = 243
     let s:c_grey_6 = 245
     let s:c_grey_7 = 250
+    let s:c_grey_8 = 234
 
     " Check how many colours the user has
     if a:colour_number == 256
 
-        " Assigning names for the status line
         " l = left
         " m = middle
         " r = right
         " s = status
         " bg = background
         " fg = foreground
+
+        " Assign names for list chars
+        let s:l_char = s:c_grey_8
+
+        " Assigning names for the status line
         let s:s_line_l_bg = s:c_none
         let s:s_line_m_bg = s:c_none
         let s:s_line_m_fg = s:c_none
@@ -120,6 +126,9 @@ function! SetColours(colour_number)
 
     else
 
+        " Assign names for list chars
+        let s:l_char = s:c_black
+
         " Assigning name for the status line
         let s:s_line_l_bg = s:c_none
         let s:s_line_m_bg = s:c_none
@@ -184,6 +193,9 @@ function! SetColours(colour_number)
         let s:r_color_column   = [ s:c_none, s:c_white      , s:c_none ]
     
     endif
+
+    " List Char colours
+    call Eh(s:c_p_l, "Base", 0, s:l_char, s:c_none)
 
     " Status bar colours
     " Start of the creation of the colours

@@ -106,6 +106,3 @@ function! TabLine(is_unicode)
     return s:t_s
 
 endfunction
-
-" Set the line
-set tabline=%!Tabline()

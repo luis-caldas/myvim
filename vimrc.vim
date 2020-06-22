@@ -15,13 +15,16 @@ set hlsearch
 set pastetoggle=<F3>
 
 " Set tab to size 4 and transform tabs into spaces
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" filetype plugin indent on
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab
 
 " Add the color column limit
 set colorcolumn=80
+
+" Set folding
+setlocal foldmethod=marker
 
 " Change the path of the .viminfo file
 set viminfo+='65535,n~/.cache/viminfo
@@ -57,6 +60,12 @@ exec "source" s:path . "/visual/lines/status.vim"
 set statusline=%!StatusLine(g:unicode_check)
 exec "source" s:path . "/visual/lines/tab.vim"
 set tabline=%!TabLine(g:unicode_check)
+
+" Load the listchars
+set list
+exec "source" s:path . "/visual/listchars.vim"
+exec "set listchars=" . ListChars(g:unicode_check)
+exec ListCharsColours()
 
 " Add the dotvim local folder
 " set them "runtimepath" (without ~/.vim folders)

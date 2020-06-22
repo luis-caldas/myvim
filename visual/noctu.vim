@@ -18,30 +18,30 @@ let g:colors_name = "noctu"
 " Vim UI {{{
 hi Normal              ctermfg=7
 hi Cursor              ctermfg=7     ctermbg=1
-hi CursorLine          ctermbg=0     cterm=NONE
-hi MatchParen          ctermfg=7     ctermbg=NONE  cterm=underline
+hi CursorLine          ctermbg=0     cterm=none
+hi MatchParen          ctermfg=7     ctermbg=none  cterm=underline
 hi Pmenu               ctermfg=15    ctermbg=0
 hi PmenuThumb          ctermbg=7
 hi PmenuSBar           ctermbg=8
 hi PmenuSel            ctermfg=0     ctermbg=4
 hi ColorColumn         ctermbg=0
-hi SpellBad            ctermfg=1     ctermbg=NONE  cterm=underline
-hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
-hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
-hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
+hi SpellBad            ctermfg=1     ctermbg=none  cterm=underline
+hi SpellCap            ctermfg=10    ctermbg=none  cterm=underline
+hi SpellRare           ctermfg=11    ctermbg=none  cterm=underline
+hi SpellLocal          ctermfg=13    ctermbg=none  cterm=underline
 hi NonText             ctermfg=8
-hi LineNr              ctermfg=8     ctermbg=NONE
+hi LineNr              ctermfg=8     ctermbg=none
 hi CursorLineNr        ctermfg=11    ctermbg=0
-hi Visual              ctermfg=0     ctermbg=12
-hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
+hi Visual              ctermfg=0     ctermbg=6
+hi IncSearch           ctermfg=0     ctermbg=13    cterm=none
 hi Search              ctermfg=0     ctermbg=10
 hi StatusLine          ctermfg=7     ctermbg=0     cterm=bold
 hi StatusLineNC        ctermfg=8     ctermbg=0     cterm=bold
-hi VertSplit           ctermfg=0     ctermbg=0     cterm=NONE
-hi TabLine             ctermfg=8     ctermbg=0     cterm=NONE
+hi VertSplit           ctermfg=0     ctermbg=0     cterm=none
+hi TabLine             ctermfg=8     ctermbg=0     cterm=none
 hi TabLineSel          ctermfg=7     ctermbg=0
-hi Folded              ctermfg=6     ctermbg=0     cterm=bold
-hi Conceal             ctermfg=6     ctermbg=NONE
+hi Folded              ctermfg=5     ctermbg=none  cterm=none
+hi Conceal             ctermfg=6     ctermbg=none
 hi Directory           ctermfg=12
 hi Title               ctermfg=3     cterm=bold
 hi ErrorMsg            ctermfg=15    ctermbg=1
@@ -77,9 +77,9 @@ hi Underlined      ctermfg=4   cterm=underline
 hi Type            ctermfg=4
 hi String          ctermfg=11
 hi Keyword         ctermfg=2
-hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
+hi Todo            ctermfg=15  ctermbg=none     cterm=bold,underline
 hi Function        ctermfg=4
-hi Identifier      ctermfg=7   cterm=NONE
+hi Identifier      ctermfg=7   cterm=none
 hi Statement       ctermfg=2   cterm=bold
 hi Constant        ctermfg=13
 hi Number          ctermfg=12
@@ -216,10 +216,10 @@ hi! link shDerefVar  shDerefSimple
 
 "}}}
 " Syntastic {{{
-hi SyntasticWarningSign       ctermfg=3  ctermbg=NONE
-hi SyntasticErrorSign         ctermfg=1  ctermbg=NONE
-hi SyntasticStyleWarningSign  ctermfg=2  ctermbg=NONE
-hi SyntasticStyleErrorSign    ctermfg=4  ctermbg=NONE
+hi SyntasticWarningSign       ctermfg=3  ctermbg=none
+hi SyntasticErrorSign         ctermfg=1  ctermbg=none
+hi SyntasticStyleWarningSign  ctermfg=2  ctermbg=none
+hi SyntasticStyleErrorSign    ctermfg=4  ctermbg=none
 
 "}}}
 " Netrw {{{
@@ -251,5 +251,5 @@ hi! link bladeEchoDelim  PreProc
 
 "}}}
 
-" vim: fdm=marker:sw=2:sts=2:et
+" vim: sw=2:sts=2
 
