@@ -65,7 +65,7 @@ set tabline=%!TabLine(g:unicode_check)
 set list
 exec "source" s:path . "/visual/listchars.vim"
 exec "set listchars=" . ListChars(g:unicode_check)
-exec ListCharsColours()
+autocmd VimEnter,WinEnter * exec ListCharsColours()
 
 " Add the dotvim local folder
 " set them "runtimepath" (without ~/.vim folders)
