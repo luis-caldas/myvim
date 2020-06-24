@@ -5,7 +5,7 @@ function! ListChars(is_unicode)
     let s:list_chars = ""
 
     " Create default variables for each item
-    let s:lc_tab   = ">>"
+    let s:lc_tab   = '\\|:'
     let s:lc_space = "."
     let s:lc_trail = "-"
     let s:lc_nbsp  = "+"
@@ -13,7 +13,7 @@ function! ListChars(is_unicode)
 
     " Overwrite wanted variables if unicode
     if a:is_unicode
-        let s:lc_tab   = "░░"
+        let s:lc_tab   = "▓░"
         let s:lc_space = "·"
         let s:lc_nbsp  = "⣿"
         let s:lc_eol   = "¬"
