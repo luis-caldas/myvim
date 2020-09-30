@@ -127,7 +127,7 @@ function! SetColours(colour_number)
     else
 
         " Assign names for list chars
-        let s:l_char = s:c_black
+        let s:l_char = s:other
 
         " Assigning name for the status line
         let s:s_line_l_bg = s:c_none
