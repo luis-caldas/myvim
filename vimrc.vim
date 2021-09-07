@@ -76,5 +76,11 @@ autocmd VimEnter,WinEnter * exec ListCharsColours()
 exec "source" s:path . "/plugins/config.vim"
 call ConfigurePlugins(g:unicode_check)
 
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
 " Load the custom startup message
 exec "source" s:path . "/visual/start.vim"
