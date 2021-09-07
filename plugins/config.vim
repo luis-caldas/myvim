@@ -10,6 +10,7 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'farmergreg/vim-lastplace'
 "Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
