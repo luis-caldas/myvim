@@ -29,17 +29,17 @@ setlocal foldmethod=marker
 " Change the path of the .viminfo file
 set viminfo+='65535,n~/.cache/viminfo
 
+" Remember last position
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+
 " Find the folder containing the vimrc file
 let s:path = fnamemodify(resolve(expand("<sfile>:p")), ":h")
 
 " Execute the vim-plug plugin manager
 exec "source" s:path . "/plugins/plug.vim"
-
-" Same last cursor positoin
-autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-    \ |   exe "normal! g`\""
-    \ | endif
 
 " Automatic download plugins
 autocmd VimEnter *
@@ -71,12 +71,7 @@ set tabline=%!TabLine(g:unicode_check)
 set list
 exec "source" s:path . "/visual/listchars.vim"
 exec "set listchars=" . ListChars(g:unicode_check)
-autocmd VimEnter,WinEnter * exec ListCharsColours()
-
-" Add the dotvim local folder
-" set them "runtimepath" (without ~/.vim folders)
-"let &runtimepath = printf("%s/vimfiles,%s,%s/vimfiles/after", $VIM, $VIMRUNTIME, $VIM)
-"let &runtimepath = printf("%s,%s,%s/after", s:dot_path, &runtimepath, s:dot_path)
+autocmd VimEnter,WinEnter * call ListCharsColours()
 
 " Load the config file with the plugins configuration
 exec "source" s:path . "/plugins/config.vim"
