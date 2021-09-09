@@ -35,6 +35,12 @@ let s:path = fnamemodify(resolve(expand("<sfile>:p")), ":h")
 " Execute the vim-plug plugin manager
 exec "source" s:path . "/plugins/plug.vim"
 
+" Same last cursor positoin
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+
 " Automatic download plugins
 autocmd VimEnter *
     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
