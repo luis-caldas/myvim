@@ -29,6 +29,14 @@ setlocal foldmethod=marker
 " Change the path of the .viminfo file
 set viminfo+='65535,n~/.cache/viminfo
 
+" Use persistent history.
+let s:undo_path = "/tmp/.vimundo"
+if !isdirectory(s:undo_path)
+    call mkdir(s:undo_path, "", 0700)
+endif
+exec "set undodir=" . s:undo_path
+set undofile
+
 " Remember last position
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
