@@ -11,6 +11,8 @@ Plug 'preservim/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'farmergreg/vim-lastplace'
+Plug 'elzr/vim-json'
+Plug 'stephpy/vim-yaml'
 "Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
