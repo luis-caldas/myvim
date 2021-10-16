@@ -26,6 +26,9 @@ set colorcolumn=80
 " Set folding
 setlocal foldmethod=marker
 
+" Automatically remove whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
 " Change the path of the .viminfo file
 set viminfo+='65535,n~/.cache/viminfo
 
