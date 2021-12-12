@@ -6,6 +6,7 @@ call plug#begin(stdpath('data') . "/mine-plugins")
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'LnL7/vim-nix'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'vim-syntastic/syntastic'
