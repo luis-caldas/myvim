@@ -42,6 +42,9 @@ function! ConfigurePlugins(is_unicode)
     " Haskell
     let g:haskell_indent_disable = 1
 
+    " gitgutter
+    let g:gitgutter_terminal_reports_focus = 0
+
     " vim-minimap
 
 endfunction
