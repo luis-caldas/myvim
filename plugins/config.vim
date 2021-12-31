@@ -12,6 +12,7 @@ Plug 'preservim/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'farmergreg/vim-lastplace'
+Plug 'prabirshrestha/vim-lsp'
 "Plug 'severin-lemaignan/vim-minimap'
 
 call plug#end()
