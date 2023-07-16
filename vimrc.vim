@@ -4,6 +4,9 @@ set number relativenumber
 " Syntax highlighting
 syntax on
 
+" Disable the mouse cursor support
+set mouse=
+
 " Disable annoying command history
 nnoremap q: <nop>
 nnoremap Q <nop>
