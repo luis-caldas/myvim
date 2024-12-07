@@ -14,6 +14,9 @@ nnoremap Q <nop>
 " Set the search highligh
 set hlsearch
 
+" Reset the colours
+set termguicolors&
+
 " map the paste mode to custom key
 set pastetoggle=<F3>
 
