@@ -18,7 +18,7 @@ set hlsearch
 set termguicolors&
 
 " map the paste mode to custom key
-set pastetoggle=<F3>
+" set pastetoggle=<F3>
 
 " Set tab to size 4 and transform tabs into spaces
 " filetype plugin indent on
