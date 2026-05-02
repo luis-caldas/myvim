@@ -1,7 +1,7 @@
 " List characters
 
 function! ListChars() abort
-    return 'tab:>-,space:.,trail:-,nbsp:+,eol:$'
+    return 'tab:>-,space:.,trail:-,nbsp:+,eol:$,extends:>,precedes:<'
 endfunction
 
 function! ListCharsColours() abort

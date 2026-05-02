@@ -7,6 +7,15 @@ set numberwidth=5
 " Syntax highlighting
 syntax enable
 
+" Terminal palette colours only
+set notermguicolors
+if exists('+t_ut')
+    set t_ut=
+endif
+
+" ASCII UI
+set fillchars=vert:\|,fold:-,diff:-
+
 " Mode display
 set noshowmode
 
@@ -32,23 +41,15 @@ augroup MineWhitespace
     autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
-" Viminfo / shada
-if has('nvim')
-    let s:state_dir = exists('*stdpath') ? stdpath('state') : expand('~/.local/state/nvim')
-    if !isdirectory(s:state_dir)
-        call mkdir(s:state_dir, 'p', 0700)
-    endif
-    execute 'set shadafile=' . fnameescape(s:state_dir . '/shada')
-else
-    let s:cache_dir = expand('~/.cache')
-    if !isdirectory(s:cache_dir)
-        call mkdir(s:cache_dir, 'p', 0700)
-    endif
-    execute 'set viminfo+=n' . fnameescape(s:cache_dir . '/viminfo')
+" Viminfo
+let s:cache_dir = expand('~/.cache')
+if !isdirectory(s:cache_dir)
+    call mkdir(s:cache_dir, 'p', 0700)
 endif
+execute 'set viminfo+=n' . fnameescape(s:cache_dir . '/viminfo')
 
 " Persistent undo
-let s:undo_path = has('nvim') && exists('*stdpath') ? stdpath('state') . '/undo' : expand('~/.cache/vim/undo')
+let s:undo_path = expand('~/.cache/vim/undo')
 if !isdirectory(s:undo_path)
     call mkdir(s:undo_path, 'p', 0700)
 endif
